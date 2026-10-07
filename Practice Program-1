@@ -1,0 +1,32 @@
+#Python Program for Text Analysis
+import re
+from collections import Counter
+
+paragraph = input("Enter a small paragraph: ")
+
+# (a) Split paragraph into sentences
+sentences = re.split(r'[.!?]+', paragraph)
+sentences = [s.strip() for s in sentences if s.strip()]
+
+print("\nSentences:")
+for s in sentences:
+    print(s)
+
+# (b) Split paragraph into words (tokens)
+words = re.findall(r'\b\w+\b', paragraph.lower())
+
+print("\nWords:")
+print(words)
+
+# (c) Count the words
+word_count = Counter(words)
+
+print("\nWord Count:")
+for word, count in word_count.items():
+    print(word, ":", count)
+
+# (d) Find the most frequent word
+most_frequent = word_count.most_common(1)
+
+print("\nMost Frequent Word:")
+print(most_frequent[0][0], "->", most_frequent[0][1], "times")
